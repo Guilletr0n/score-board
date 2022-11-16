@@ -1,0 +1,9 @@
+{
+  "name": "sport-radar-technical-test",
+  "author": "Guillermo González de Castro",
+  "main": "sport-radar.js",
+  "type": "module",
+  "dependencies": {
+    "make-runnable": "^1.4.0"
+  }
+}
