@@ -21,10 +21,11 @@ module.exports = {
     load_games_summary(db).then(result => {
       const current_games = JSON.parse(result);
       current_games.push(new_game);
-      helper.saveData(current_games);
+      helper.saveData(db, JSON.stringify(current_games));
     })
-
-    console.log(`${_home} - ${_away} game added to the summary`)
+    let output = `${_home} - ${_away} game added to the summary`
+    console.log(output)
+    return output
   },
   finish: function (_home, _away) {
     load_games_summary(db).then(result => {
@@ -32,7 +33,7 @@ module.exports = {
       let games_filtered = games_summary.filter(function(value){
         return !(_home === value.home_team && _away === value.away_team);
       })
-      helper.saveData(games_filtered)
+      helper.saveData(db, JSON.stringify(games_filtered))
     })
     
   },
@@ -51,15 +52,16 @@ module.exports = {
           return value
         }
       })
-      helper.saveData(updated_summary)
+      helper.saveData(db, JSON.stringify(updated_summary))
     })
   },
   summary: function () {
-    load_games_summary(db).then(result => {
+    return load_games_summary(db).then(result => {
       let games_summary = JSON.parse(result);
       games_summary.forEach(game => {
         console.log(`${game.home_team} ${game.home_score} - ${game.away_team} ${game.away_score}`)
       });
+      return games_summary.length
     })
   }
 };
@@ -70,5 +72,7 @@ function load_games_summary(_file) {
 }
 
 require('make-runnable/custom')({
-  printOutput: false
+  printOutputFrame: false,
+  printOutput: false,
+  printErrorOutput: true
 })

@@ -4,6 +4,16 @@
   "main": "sport-radar.js",
   "type": "module",
   "dependencies": {
-    "make-runnable": "^1.4.0"
+    "make-runnable": "1.4.0"
+  },
+  "scripts": {
+    "summary": "node sport-radar.cjs summary",
+    "start": "node sport-radar.cjs start",
+    "update": "node sport-radar.cjs update",
+    "finish": "node sport-radar.cjs finish",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }

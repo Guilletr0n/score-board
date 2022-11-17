@@ -11,13 +11,13 @@ module.exports = {
 
     loadJSON().then(data => {
       return data
+    }).catch((error)=>{
+      console.error('File not found')
     })
 
     return loadJSON()
   },
-  saveData: function(_data) {
-    //const readFile = fs.readFile('games.json');
-    let game = JSON.stringify(_data);
-    fs.writeFileSync('games.json', game)
+  saveData: function(_file, _content) {
+    fs.writeFileSync(_file, _content)
   }
 }
